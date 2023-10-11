@@ -66,9 +66,10 @@ outcome = "You rolled a #{first_die}, #{second_die}, #{third_die}, #{fourth_die}
 <p>#{outcome}</p>"
 end
 
-get("dice/1/6") do
+get("/dice/1/6") do
   die = rand(1..6)
   outcome = "Your rolled a #{die}"
   "<h1>1d6</h1>
   <p>#{outcome}</p>"
 end
+

@@ -1,6 +1,11 @@
 # /dice.rb
 
 require "sinatra"
+require "better_errors"
+require "binding_of_caller"
+use(BetterErrors::Middleware)
+BetterErrors.application_root = __dir__
+BetterErrors::Middleware.allow_ip!('0.0.0.0/0.0.0.0')
 
 get("/") do
   "Hello World"
@@ -61,4 +66,9 @@ outcome = "You rolled a #{first_die}, #{second_die}, #{third_die}, #{fourth_die}
 <p>#{outcome}</p>"
 end
 
-
+get("dice/1/6") do
+  die = rand(1..6)
+  outcome = "Your rolled a #{die}"
+  "<h1>1d6</h1>
+  <p>#{outcome}</p>"
+end
